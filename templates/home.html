@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Home Page</h1>
+    <div class="content-section">
+        <p> Free advanced NLP services for your data (sentiment analysis and topic detection) </p>
+
+        <div class="list-group">
+          <a href="{{ url_for('user_upload') }}" class="list-group-item list-group-item-action">Upload Your Own File</a>
+          <a href="{{ url_for('twitter_search') }}" class="list-group-item list-group-item-action">Twitter Data Analysis</a>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Analyze Phrases</h1>
+    <div class="content-section">
+        <form action="/download-top-bigrams" method="POST">
+            <input type="Submit" class="btn btn-outline-info" value="Download Top Phrases (CSV)" >
+        </form>
+        <br>
+        <h4>Wordcloud</h4>
+        <figure class="figure">
+            <img src="{{ url_for('static', filename='wordclouds/{}'.format(wordcloud_fname)) }}" class="figure-img img-fluid rounded" alt="Oops! Wordcloud is missing">
+        </figure>
+        <br>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{{ url_for('get_tweet_analysis_page')}}"> Main Menu</a>
+        </small>
+    </div>
+
+{% endblock content %}

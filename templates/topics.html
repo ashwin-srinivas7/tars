@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Download Topics</h1>
+    <form action="/download-bigrams-upload" method="POST">
+        <input type="Submit" value="Get top 100 bigrams CSV">
+    </form>
+    <br>
+    <form action="/download-topics-upload" method="POST">
+        <input type="Submit" value="Get topics CSV">
+    </form>
+{% endblock content %}

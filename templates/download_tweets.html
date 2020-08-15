@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Twitter Dashboard</h1>
+    <div class="content-section">
+        <h4>Summary of tweets</h4>
+        <p class='text-muted'>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Search Query: <b>{{ search_query }}</b> </li>
+                <li class="list-group-item list-group-item-light">Total tweets returned: <b>{{ num_records }}</b></li>
+                <li class="list-group-item list-group-item-light">Total Unique Words: <b>{{ num_words }}</b></li>
+                <li class="list-group-item list-group-item-light">Earliest Tweet Date: <b>{{ tweet_min_date }}</b></li>
+                <li class="list-group-item list-group-item-light">Latest Tweet Date: <b>{{ tweet_max_date }}</b></li>
+            </ul>
+        </p>
+        <form action="/download-tweets" method="POST">
+            <input type="Submit" class="btn btn-outline-info btn-sm" value="Download All Tweets (CSV)" >
+        </form>
+    </div>
+    <div class="content-section">
+        <h4>Timeline of Tweets</h4>
+        <figure class="figure">
+                <img src="{{ url_for('static', filename='twitter_timeline/{}'.format(lineplot_fname)) }}" class="figure-img img-fluid rounded" alt="Oops! Lineplot is missing">
+        </figure>
+    </div>
+    <div class="content-section">
+        <h4>Topic Modelling and Sentiment Analysis</h4>
+        <div class="list-group">
+          <a href="{{ url_for('get_top_bigrams_tweets') }}" class="list-group-item list-group-item-action">Analyze Top Phrases</a>
+<!--          <a href="{{ url_for('get_topics_tweets') }}" class="list-group-item list-group-item-action">Analyze Topics</a>-->
+          <a href="#" class="list-group-item list-group-item-action">Analyze Sentiment</a>
+        </div>
+        <br>
+         <div>
+             <a class="btn btn-secondary btn-sm m-1" href = "{{ url_for('get_topics_tweets') }}">Visualize Topics</a>
+         </div>
+        <form action="/download-topics-tweets" method="POST">
+            <input type="Submit" class="btn btn-outline-info btn-sm m-1" value="Download Topic File (CSV)" >
+        </form>
+    </div>
+    <div class="content-section">
+        <h4>Hashtag Analysis</h4>
+        <figure class="figure">
+                <img src="{{ url_for('static', filename='hashtags/{}'.format(barplot_fname)) }}" class="figure-img img-fluid rounded" alt="Oops! Barplot is missing">
+        </figure>
+        <form action="/download_top-n-hashtags" method="POST">
+            <input type="Submit" class="btn btn-outline-info btn-sm" value="Download Hashtags Count (CSV)" >
+        </form>
+    </div>
+{% endblock content %}
